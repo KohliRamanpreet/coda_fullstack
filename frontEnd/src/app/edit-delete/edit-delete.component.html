@@ -1,0 +1,81 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand" href="#" style="color: white;">Polling System</a>
+    <span class="mat-spacer"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <button class="nav-link" class="button" [routerLink]="['/']">Home </button> 
+        </li>
+        <li class="nav-item">      <button  class="nav-link" class="button" [routerLink]="['/admin']">Admin</button>
+         </li> 
+
+      </ul>
+     
+    </div>
+  </nav>
+<div *ngIf="flag==1" class="box">
+    <form #enForm="ngForm">
+
+        <label>Enter Admin Id </label>
+        <input style="width: 200px; background-color:white" type="text" name="adminNo" class="form-control" ngModel #block="ngModel"
+            required>
+
+
+        <label>Enter password </label>
+        <input style="width: 200px;" type="password" name="adminPass" class="form-control" ngModel #flat="ngModel" required>
+
+        <br>
+        <label>Enter Candidate Id to be edited or deleted </label>
+        <input style="width: 200px;" type="number" name="candId" class="form-control" ngModel #id="ngModel" required>
+
+        <br>
+
+        <input type="submit" value="Proceed" (click)="loginAdmin(enForm)" class="btn btn-primary"
+            style=" background-color:  #9a91e9;" [disabled]="enForm.form.invalid">
+    </form>
+</div>
+<div class="p-5 m-5 abc" *ngIf="flag==2">
+    <h2 style="text-align: center; ">You can edit and delete your information here.</h2>
+    <form #enform="ngForm">
+        <h3 class="disp">  Candidate ID: </h3> <input type="number" name="name9"
+            placeholder={{d.userId}} [(ngModel)]=d.userId><br>
+        <h3 class="disp">  Name: </h3> <input type="text" name="name7"
+            placeholder={{d.name}} [(ngModel)]=d.name><br>
+        <h3 class="disp"> Expert Level:</h3> <input type="number" name="name1" placeholder={{d.expertLevel}}
+            [(ngModel)]=d.expertLevel> <br>
+        <h3 class="disp"> Number of Challenges Solved:</h3><input type="number" name="name2" placeholder={{d.challSolved}}
+            [(ngModel)]=d.challSolved> <br>
+       
+        <button type="button" class=" mb-2" style=" background-color:  #9a91e9;" class="btn btn-primary"
+            (click)="addSkills()">Add Skills</button>
+        <table class="table">
+            <tr>
+                <th style=" width: 80px;">Skill</th>
+                <th style=" width: 80px;">Point</th>
+                <th style=" width: 80px;">Delete</th>
+
+            </tr>
+            <tr *ngFor="let a of d.key; let i=index">
+                <td> <input type="text" placeholder={{a.sub}} name="sub_{{a.id}}"
+                        [(ngModel)]=a.sub required></td>
+                <td > <input type="number" placeholder={{a.points}} name="points_{{a.id}}"
+                        [(ngModel)]=a.points></td>
+                <td > <button type="button" class="btn btn-danger btn-sm"
+                        (click)="removeSkills(i)">Remove</button> </td>
+            </tr>
+
+        </table>
+        <input style=" background-color:  #9a91e9;" type="submit" value="Edit" class="btn btn-primary" (click)="edit()">
+        <input style="margin-left: 20px; background-color:  #9a91e9;" type="submit" class="btn btn-primary"
+            value="delete" (click)="delete()">
+
+    </form>
+
+
+</div>

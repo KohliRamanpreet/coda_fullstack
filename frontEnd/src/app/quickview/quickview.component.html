@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Candidate Detail</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="modalService.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container" *ngIf="d">
+    <div class="row my-2">
+      <div class="col-12">
+       {{d.userId}}<br>
+       {{d.name}}
+      </div>
+    </div>
+    <div class="row my-2">
+      <div *ngFor="let d1 of d.key" class="col-6">
+        <p>
+          <span class="badge badge-secondary">{{ d1.sub }}</span
+          >&nbsp;&nbsp;<span class="badge badge-dark">{{ d1.points }}</span>
+        </p>
+      </div>
+
+      
+      
+    </div>
+    
+  </div>
+</div>

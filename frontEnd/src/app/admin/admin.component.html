@@ -1,0 +1,138 @@
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand" style="color: white;" href="#">Polling System</a>
+    <span class="mat-spacer"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link" href="#">Home </a>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" class="button" [routerLink]="['/']">Home</button> 
+        </li>
+        <li class="nav-item">      <button  class="nav-link" class="button" [routerLink]="['/login']">Login </button>
+         </li>  
+      </ul>
+     
+    </div>
+  </nav>
+<div *ngIf="flag==1" class="box">
+    <form #enForm="ngForm">
+
+        <label>Enter Admin Id </label>
+        <input style="width: 200px; background-color:white" type="text" name="adminNo" class="form-control" ngModel #block="ngModel"
+            required>
+
+
+        <label>Enter password </label>
+        <input style="width: 200px;" type="password" name="adminPass" class="form-control" ngModel #flat="ngModel" required>
+
+        <br>
+
+        <input type="submit" value="Proceed" (click)="loginAdmin(enForm)" class="btn btn-primary"
+            style=" background-color:  #9a91e9;" [disabled]="enForm.form.invalid">
+    </form>
+</div>
+<div class="loginbox" *ngIf="flag==2">
+    <h1>Register</h1>
+    <form #enForm="ngForm" novalidate>
+
+
+        <label>Name</label>
+        <input class="form-control" type="text" id="name" name="name" class="form-control" required [(ngModel)]=d.name
+            #name1="ngModel">
+        <div *ngIf="name1.invalid && (name1.dirty || name1.touched)">
+            <small class="text-danger">
+                <small *ngIf="name1.errors.required">
+                    Name is required.
+                </small>
+            </small>
+        </div>
+
+
+
+        <label>Votes</label>
+        <input class="form-control" type="number" id="blockNo" name="blockNo" class="form-control" required
+            [(ngModel)]=d.votes #blockNo1="ngModel">
+        <div *ngIf="blockNo1.invalid && (blockNo1.dirty || blockNo1.touched)">
+            <small class="text-danger">
+                <small *ngIf="blockNo1.errors.required">
+                   Votes should be zero
+                </small>
+            </small>
+        </div>
+
+
+
+
+        <label>Challenge Solved</label>
+        <input class="form-control" type="number" id="flatNo" name="flatNo" class="form-control" required
+            [(ngModel)]=d.challSolved #flatNo1="ngModel">
+        <div *ngIf="flatNo1.invalid && (flatNo1.dirty || flatNo1.touched)">
+            <small class="text-danger">
+                <small *ngIf="flatNo1.errors.required">
+                    Challenge Solved is required.
+                </small>
+            </small>
+        </div>
+
+
+
+
+
+
+
+       
+
+    <label>Expert Level</label>
+    <input type="number" name="no" #no="ngModel" [(ngModel)]=d.expertLevel
+        class="form-control"  #mobile="ngModel" required />
+    <div *ngIf="no.invalid && (no.dirty || no.touched)">
+        <small class="text-danger">
+            <small *ngIf="no.errors.required ">
+                Expert level is mandatory.
+            </small>
+        </small>
+    </div>
+
+
+
+
+
+
+
+
+
+
+        <button type="button" class="btn btn-primary mb-4" (click)="addSkills()">Add Skills</button>
+        <br>
+        <section class="container border m-1 p-2" *ngFor="let member of members; let i = index;">
+            <div class="row">
+                <div class="col-6">
+                    <h4 style="color: black;">Skill {{i + 1}}</h4>
+                </div>
+                <div class="col-6 text-right">
+                    <button type="button" class="btn btn-danger btn-sm" (click)="removeSkills(i)">Remove</button>
+                </div>
+            </div>
+
+            <label>Skill</label>
+            <input type="text" class="form-control" [(ngModel)]="member.sub" name="sub_{{member.id}}" />
+
+
+            <label>Points</label>
+            <input type="number" class="form-control" [(ngModel)]="member.points" name="points_{{member.id}}"/>  
+
+        </section>
+
+        <input type="submit" name="submit" value="Login" (click)="onSubmit()" [disabled]="enForm.form.invalid"> 
+    </form>
+</div>

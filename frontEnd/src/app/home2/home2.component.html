@@ -1,0 +1,51 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand" href="#" style="color: white;"> Polling System</a>
+    <span class="mat-spacer"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <button class="nav-link" class="button" [routerLink]="['/admin']">Admin </button> 
+        </li>
+        <li class="nav-item">      <button  class="nav-link" class="button" [routerLink]="['/editDelete']">Edit/Delete</button>
+         </li> 
+
+      </ul>
+     
+    </div>
+  </nav>
+<div class="jumbotron  bg-dark jumbotron-fluid text-center" style="display:flex;
+justify-content:center; align-items:center; margin-top: 30px; margin-bottom: 0px; height: 50px; background-color: #0f479c !important">
+<h1 style="line-height: 100px;color: ivory;font-size: 40px;  "> <b> Hackers Poll</b></h1>
+</div>
+<div  class="card-groups" style="margin-left: 150px;">
+    <div *ngFor="let d of details">
+    <div class="m-1 col-3" style="height:200px;  float: left; background-color: #7397ce;  box-shadow: 5px 10px #888888;">
+    <div class="m-1">
+     <b>{{d.name}}</b><br>
+     Votes: {{d.votes}}  <br>
+     Challenges Solved: {{d.challSolved}}<br>
+    Expert Level: {{d.expertLevel}}<br>
+    <button
+            class="btn btn-outline-dark text-light my-2"
+            (click)="openDish(d)"
+          >
+            Profile View
+        </button>
+        <button
+        type="button"
+        class="btn btn-outline-success"
+        (click)="voteModal(d.userId)"
+      >
+        Vote 
+      </button>
+    </div>
+   
+</div>
+</div>
+
+
+</div>
